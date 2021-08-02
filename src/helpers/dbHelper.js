@@ -71,6 +71,23 @@ export function getArtists(artistsData) {
   });
 }
 
+// Pushes artist submissions to DB
+export function submitArtist(artist, notable, handle) {
+  const firebaseDB = firebase.database();
+
+  var share = {
+    artist: artist,
+    notable: notable,
+    handle: handle,
+  };
+
+  var updates = {};
+
+  updates["shares/" + firebaseDB.ref("submissions").push().key] = share;
+
+  firebaseDB.ref().update(updates);
+}
+
 var firebaseConfig = {
   apiKey: "AIzaSyARro3Vj-i8QUJ-9E8UT7yD4ygRmGF-we4",
   authDomain: "new-new-d75cb.firebaseapp.com",
