@@ -1,8 +1,7 @@
 import React from "react";
 import { Text, Image, View, StyleSheet } from "react-native";
 
-export default class ArtistPost extends React.Component {
-  render() {
+const ArtistPost = (props) => {
     const {
       name,
       image,
@@ -12,7 +11,8 @@ export default class ArtistPost extends React.Component {
       soundcloud,
       submitter,
       timeStamp,
-    } = this.props;
+    } = props;
+    
     return (
       <View>
         <Image style={styles.tinyLogo} source={{ uri: image }} />
@@ -25,7 +25,7 @@ export default class ArtistPost extends React.Component {
       </View>
     );
   }
-}
+
 const styles = StyleSheet.create({
   container: {
     paddingTop: 50,
@@ -39,3 +39,5 @@ const styles = StyleSheet.create({
     height: 58,
   },
 });
+
+export default ArtistPost

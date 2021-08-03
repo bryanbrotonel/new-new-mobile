@@ -1,5 +1,5 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
+// import "react-native-gesture-handler";
 import {
   StyleSheet,
   View,
@@ -7,91 +7,70 @@ import {
   SafeAreaView,
   TextInput,
   Button,
+  Text,
   Alert,
 } from "react-native";
-import { getPosts, getArtists, submitArtist } from "./src/helpers/dbHelper";
-import ArtistPost from "./src/components/ArtistPost";
 
-export default function App() {
-  const [artists, setArtists] = useState([]);
-  const [subArtist, onChangeSubArtist] = useState(null);
-  const [subNotable, onChangeSubNotable] = useState(null);
-  const [subHandle, onChangeSubHandle] = useState(null);
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-  var items = [];
+import HomePage from "./pages/HomePage";
+import DetailsPage from "./pages/DetailsPage";
+import SubmissionPage from "./pages/SubmissionPage";
+import AboutPage from "./pages/AboutPage";
 
-  useEffect(() => {
-    getPosts()
-      .then(function (posts) {
-        return getArtists(posts);
-      })
-      .then(function (artistPosts) {
-        setArtists(artistPosts);
-      });
-  }, []);
+const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
-  artists.forEach((artist) => {
-    const item = (
-      <ArtistPost
-        name={`${artist.name}`}
-        image={`${artist.image}`}
-        noteableTitle={`${artist.notableTitle}`}
-        noteableLink={`${artist.notableLink}`}
-        instagram={`${artist.instagram}`}
-        soundcloud={`${artist.soundcloud}`}
-        submitter={`${artist.submitter}`}
-        timeStamp={`${artist.timeStamp}`}
-        key={`${artist.instagram}`}
-      />
-    );
-    items.push(item);
-  });
-
-  function onSubmitSubmission() {
-    if (subArtist == null) Alert.alert("Enter Artist");
-    else if (subNotable == null) Alert.alert("Enter Notable");
-    else if (subHandle == null) Alert.alert("Enter Handle");
-    else submitArtist(subArtist, subNotable, subHandle);
-  }
-
+function HomePageStack() {
   return (
-    <SafeAreaView>
-      <ScrollView styles={styles.container}>
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeSubArtist}
-          value={subArtist}
-          placeholder="Enter Artist"
-        />
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeSubNotable}
-          value={subNotable}
-          placeholder="Enter Notable"
-        />
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeSubHandle}
-          value={subHandle}
-          placeholder="Enter Handle"
-        />
-        <Button title="Submit" onPress={onSubmitSubmission} />
-        <View>{items}</View>
-        <StatusBar style="auto" />
-      </ScrollView>
-    </SafeAreaView>
+    <Stack.Navigator initialRouteName="HomePageStack">
+      <Stack.Screen
+        name="Home"
+        component={HomePage}
+        options={({ navigation }) => ({
+          title: "New New",
+          headerRight: () => (
+            <Button
+              onPress={() => navigation.navigate("About")}
+              title="About"
+              color="#000"
+            />
+          ),
+        })}
+      />
+      <Stack.Screen
+        name="Details"
+        component={DetailsPage}
+        options={{ title: "Details Page", headerBackTitleVisible: false }}
+      />
+      <Stack.Screen
+        name="About"
+        component={AboutPage}
+        options={{ title: "New New", headerBackTitleVisible: false }}
+      />
+    </Stack.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-  },
-});
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen
+          name="HomeStack"
+          component={HomePageStack}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Tab.Screen
+          name="Submission"
+          component={SubmissionPage}
+          options={{ title: "New New" }}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+}
