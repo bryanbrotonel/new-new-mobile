@@ -1,0 +1,81 @@
+{
+  "posts" : {
+    "-L-hxLP3hYYq23OUYzz0" : {
+      "author" : "@bryanbrotonel",
+      "posted" : -1512599545510
+    },
+    "-L-hzUJvhXY2I3vfMojv" : {
+      "author" : "@bryanbrotonel",
+      "posted" : -1512600106328
+    },
+    "-L-i0XlWCgmdCCmhgjGS" : {
+      "author" : "@bryanbrotonel",
+      "posted" : -1512600644742
+    },
+    "-LL8Kf-HaoSrku7fyTDE" : {
+      "author" : "@bryanbrotonel",
+      "posted" : -1535353200000
+    },
+    "-LL8KtulB909uCsS18yt" : {
+      "author" : "@bryanbrotonel",
+      "posted" : -1532847600000
+    },
+    "-LL8L0j1z9-ssMkkCZQm" : {
+      "author" : "@bryanbrotonel",
+      "posted" : -1535094000000
+    }
+  },
+  "artists_list" : {
+    "-L-hxLP3hYYq23OUYzz0" : {
+      "image" : "https://i.imgur.com/HERCJtO.jpg",
+      "instagram" : "brentfaiyaz",
+      "name" : "Brent Faiyaz",
+      "notableLink" : "https://soundcloud.com/brentfaiyaz/poison-prod-by-ben-free?in=brentfaiyaz/sets/a-m-paradox",
+      "notableTitle" : "Poison",
+      "soundcloud" : "brentfaiyaz"
+    },
+    "-L-hzUJvhXY2I3vfMojv" : {
+      "image" : "https://i.imgur.com/CM278ie.jpg",
+      "instagram" : "dpatbeats",
+      "name" : "Dpat",
+      "notableLink" : "https://www.youtube.com/watch?v=RXfF-bQxPp4",
+      "notableTitle" : "Sonder Unreleased 05-06",
+      "soundcloud" : "dpat",
+      "spotify": "5tCcGNhAW0do4RlIz9WilZ"
+    },
+    "-L-i0XlWCgmdCCmhgjGS" : {
+      "image" : "https://i.imgur.com/9z6f0IY.png",
+      "instagram" : "",
+      "name" : "Atu",
+      "notableLink" : "https://www.youtube.com/watch?v=t6QanTjf0s0",
+      "notableTitle" : "Sonder Unreleased 01",
+      "soundcloud" : "alphatmu"
+    },
+    "-LL8Kf-HaoSrku7fyTDE" : {
+      "image" : "https://i.imgur.com/MwJ631q.jpg",
+      "instagram" : "devhynes",
+      "name" : "Blood Orange",
+      "notableLink" : "https://soundcloud.com/bloodorange/saint",
+      "notableTitle" : "Saint",
+      "soundcloud" : "bloodorange",
+      "spotify": "6LEeAFiJF8OuPx747e1wxR"
+
+    },
+    "-LL8KtulB909uCsS18yt" : {
+      "image" : "https://i.imgur.com/YGmKNR5.jpg",
+      "instagram" : "arinraycamp",
+      "name" : "Arin Ray",
+      "notableLink" : "https://soundcloud.com/arin-ray/stressin?in=arin-ray/sets/platinum-fire-1",
+      "notableTitle" : "Stressin",
+      "soundcloud" : "arin-ray"
+    },
+    "-LL8L0j1z9-ssMkkCZQm" : {
+      "image" : "https://i.imgur.com/KCxr908.jpg",
+      "instagram" : "rexorangecounty",
+      "name" : "Rex Orange County",
+      "notableLink" : "https://www.youtube.com/watch?v=8ECLpFVE5pE",
+      "notableTitle" : "Edition",
+      "soundcloud" : "rexorangecounty"
+    }
+  }
+}

@@ -1,7 +1,7 @@
 // import "react-native-gesture-handler";
 import React, { useState, useEffect } from 'react';
 import { useFonts } from 'expo-font';
-import { Button } from 'react-native';
+import { View, Button } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -35,7 +35,7 @@ function HomePageStack() {
       <Stack.Screen
         name="Details"
         component={DetailsPage}
-        options={{ title: 'Details Page', headerBackTitleVisible: false }}
+        options={{ title: 'New New', headerBackTitleVisible: false }}
       />
       <Stack.Screen
         name="About"
@@ -49,9 +49,9 @@ function HomePageStack() {
 export default function App() {
   // Load fonts
   const [loaded] = useFonts({
-    'Poppins': require('./assets/fonts/Poppins-Regular.ttf'),
+    Poppins: require('./assets/fonts/Poppins-Regular.ttf'),
     'Poppins-SemiBold': require('./assets/fonts/Poppins-SemiBold.ttf'),
-    'Roboto': require('./assets/fonts/Roboto-Regular.ttf'),
+    Roboto: require('./assets/fonts/Roboto-Regular.ttf'),
     'Roboto-Bold': require('./assets/fonts/Roboto-Bold.ttf'),
   });
 
