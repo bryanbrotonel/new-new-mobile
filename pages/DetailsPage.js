@@ -27,13 +27,47 @@ const DetailsPage = ({ route }) => {
   const {
     name,
     image,
+    bio,
     notableTitle,
     notableLink,
     instagram,
+    spotify,
     soundcloud,
     submitter,
     timeStamp,
   } = artist;
+
+  const instagramView =
+    instagram != '' ? (
+      <FontAwesomeIcon
+        onPress={() => Linking.openURL('https://instagram.com/' + instagram)}
+        icon={faInstagram}
+        size={30}
+        style={styles.socialLogo}
+      />
+    ) : null;
+
+  const spotifyView =
+    spotify != '' ? (
+      <FontAwesomeIcon
+        onPress={() =>
+          Linking.openURL('https://open.spotify.com/artist/' + spotify)
+        }
+        icon={faSpotify}
+        size={30}
+        style={styles.socialLogo}
+      />
+    ) : null;
+
+  const soundcloudView =
+    soundcloud != '' ? (
+      <FontAwesomeIcon
+        onPress={() => Linking.openURL('https://soundcloud.com/' + soundcloud)}
+        icon={faSoundcloud}
+        size={30}
+        style={styles.socialLogo}
+      />
+    ) : null;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -45,38 +79,12 @@ const DetailsPage = ({ route }) => {
               <HeaderText>{name}</HeaderText>
             </View>
             <View style={styles.socialsView}>
-              <FontAwesomeIcon
-                onPress={() =>
-                  Linking.openURL('https://instagram.com/' + instagram)
-                }
-                icon={faInstagram}
-                size={30}
-                style={styles.socialLogo}
-              />
-              <FontAwesomeIcon
-                onPress={() =>
-                  Linking.openURL('https://instagram.com/' + instagram)
-                }
-                icon={faSpotify}
-                size={30}
-                style={styles.socialLogo}
-              />
-              <FontAwesomeIcon
-                onPress={() =>
-                  Linking.openURL('https://soundcloud.com/' + soundcloud)
-                }
-                icon={faSoundcloud}
-                size={30}
-                style={styles.socialLogo}
-              />
+              {instagramView}
+              {spotifyView}
+              {soundcloudView}
             </View>
           </View>
-          <BodyText>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </BodyText>
+          <BodyText>{bio}</BodyText>
         </View>
         <TouchableOpacity
           style={styles.notableView}

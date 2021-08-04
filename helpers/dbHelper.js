@@ -53,9 +53,11 @@ export function getArtists(artistsData) {
           const artistItem = {
             name: artistData.name,
             image: artistData.image,
+            bio: artistData.bio,
             notableTitle: artistData.notableTitle,
             notableLink: artistData.notableLink,
             instagram: artistData.instagram,
+            spotify: artistData.spotify,
             soundcloud: artistData.soundcloud,
             submitter: artistSnapshot.val()['author'],
             timeStamp: timeStamp.toString(),
