@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
-  Text,
-  View,
-  ScrollView,
+  Modal,
   SafeAreaView,
   TextInput,
   Button,
   Alert,
   StatusBar,
   TouchableOpacity,
+  Pressable,
+  View,
+  Text,
 } from 'react-native';
+
+import { submitArtist } from '../helpers/dbHelper';
 
 import HeaderText from '../components/HeaderText';
 import BodyText from '../components/BodyText';
@@ -18,18 +21,48 @@ import BodyText from '../components/BodyText';
 export default function SubmissionPage() {
   const [subArtist, onChangeSubArtist] = useState(null);
   const [subHandle, onChangeSubHandle] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
 
   function onSubmitSubmission() {
-    if (subArtist == null) Alert.alert('Enter Artist');
-    else if (subHandle == null) Alert.alert('Enter Handle');
-    else submitArtist(subArtist, subNotable, subHandle);
+    if (subArtist == null) Alert.alert('Enter Artist Name');
+    else if (subHandle == null) Alert.alert('Enter Your Social Media Handle');
+    else {
+      onChangeSubArtist(null);
+      onChangeSubHandle(null);
+      setModalVisible(!modalVisible);
+      submitArtist(subArtist, subHandle);
+    }
   }
 
   return (
     <SafeAreaView style={styles.container}>
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert('Modal has been closed.');
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <BodyText style={{ ...styles.modalText }}>
+              Thank you for sharing music with the world! Check back to see your
+              artist on your feed.
+            </BodyText>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <Text style={styles.textStyle}>Close</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
       <HeaderText style={{ ...styles.titleText }}>Plug Artists In</HeaderText>
       <BodyText style={{ ...styles.subTitleText }}>
-        Know any artists? Share new artists with the world!
+        Know any new and upcomming artists? Share them with the world!
       </BodyText>
       <TextInput
         style={styles.input}
@@ -85,5 +118,49 @@ const styles = StyleSheet.create({
     backgroundColor: '#0D3B66',
     justifyContent: 'center',
     borderRadius: 15,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  button: {
+    borderRadius: 15,
+    padding: 17,
+    elevation: 2,
+    alignSelf: 'flex-end',
+  },
+  buttonOpen: {
+    backgroundColor: '#0D3B66',
+  },
+  buttonClose: {
+    backgroundColor: '#0D3B66',
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    fontSize: 15,
+  },
+  modalText: {
+    fontSize: 20,
+    marginBottom: 30,
+    lineHeight: 30,
+    textAlign: 'left',
   },
 });

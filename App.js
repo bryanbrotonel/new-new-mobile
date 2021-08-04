@@ -14,7 +14,7 @@ import DetailsPage from './pages/DetailsPage';
 import SubmissionPage from './pages/SubmissionPage';
 import AboutPage from './pages/AboutPage';
 import {
-  faHome,
+  faFire,
   faInfoCircle,
   faPlug,
 } from '@fortawesome/free-solid-svg-icons';
@@ -90,7 +90,7 @@ export default function App() {
           tabBarIcon: ({color}) => {
             return (
               <FontAwesomeIcon
-                icon={route.name === 'Home' ? faHome : faPlug}
+                icon={route.name === 'Home' ? faFire : faPlug}
                 size={25}
                 color={color}
               />
@@ -108,7 +108,7 @@ export default function App() {
           }}
         />
         <Tab.Screen
-          name="Submission"
+          name="Submissions"
           component={SubmissionPage}
           options={{
             headerTitleStyle: {
