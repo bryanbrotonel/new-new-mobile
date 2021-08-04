@@ -1,16 +1,23 @@
 // import "react-native-gesture-handler";
 import React, { useState, useEffect } from 'react';
 import { useFonts } from 'expo-font';
-import { View, Button } from 'react-native';
+import { StyleSheet, Button } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+
 import HomePage from './pages/HomePage';
 import DetailsPage from './pages/DetailsPage';
 import SubmissionPage from './pages/SubmissionPage';
 import AboutPage from './pages/AboutPage';
+import {
+  faHome,
+  faInfoCircle,
+  faPlug,
+} from '@fortawesome/free-solid-svg-icons';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -23,11 +30,15 @@ function HomePageStack() {
         component={HomePage}
         options={({ navigation }) => ({
           title: 'New New',
+          headerTitleStyle: {
+            ...styles.headerText,
+          },
           headerRight: () => (
-            <Button
+            <FontAwesomeIcon
               onPress={() => navigation.navigate('About')}
-              title="About"
-              color="#000"
+              icon={faInfoCircle}
+              size={20}
+              style={styles.aboutLogo}
             />
           ),
         })}
@@ -35,12 +46,24 @@ function HomePageStack() {
       <Stack.Screen
         name="Details"
         component={DetailsPage}
-        options={{ title: 'New New', headerBackTitleVisible: false }}
+        options={{
+          title: 'New New',
+          headerBackTitleVisible: false,
+          headerTitleStyle: {
+            ...styles.headerText,
+          },
+        }}
       />
       <Stack.Screen
         name="About"
         component={AboutPage}
-        options={{ title: 'New New', headerBackTitleVisible: false }}
+        options={{
+          title: 'New New',
+          headerBackTitleVisible: false,
+          headerTitleStyle: {
+            ...styles.headerText,
+          },
+        }}
       />
     </Stack.Navigator>
   );
@@ -62,9 +85,23 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({color}) => {
+            return (
+              <FontAwesomeIcon
+                icon={route.name === 'Home' ? faHome : faPlug}
+                size={25}
+                color={color}
+              />
+            );
+          },
+          tabBarActiveTintColor: '#0D3B66',
+          tabBarInactiveTintColor: 'gray',
+        })}
+      >
         <Tab.Screen
-          name="HomeStack"
+          name="Home"
           component={HomePageStack}
           options={{
             headerShown: false,
@@ -73,9 +110,25 @@ export default function App() {
         <Tab.Screen
           name="Submission"
           component={SubmissionPage}
-          options={{ title: 'New New' }}
+          options={{
+            headerTitleStyle: {
+              ...styles.headerText,
+            },
+          }}
         />
       </Tab.Navigator>
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  aboutLogo: {
+    marginRight: 12,
+    color: '#0D3B66',
+  },
+  headerText: {
+    fontSize: 25,
+    fontFamily: 'Poppins-Bold',
+    color: '#0D3B66',
+  },
+});
