@@ -1,24 +1,16 @@
-import React, { useState, useEffect } from "react";
 // import "react-native-gesture-handler";
-import {
-  StyleSheet,
-  View,
-  ScrollView,
-  SafeAreaView,
-  TextInput,
-  Button,
-  Text,
-  Alert,
-} from "react-native";
+import React, { useState, useEffect } from 'react';
+import { useFonts } from 'expo-font';
+import { Button } from 'react-native';
 
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import HomePage from "./pages/HomePage";
-import DetailsPage from "./pages/DetailsPage";
-import SubmissionPage from "./pages/SubmissionPage";
-import AboutPage from "./pages/AboutPage";
+import HomePage from './pages/HomePage';
+import DetailsPage from './pages/DetailsPage';
+import SubmissionPage from './pages/SubmissionPage';
+import AboutPage from './pages/AboutPage';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -30,10 +22,10 @@ function HomePageStack() {
         name="Home"
         component={HomePage}
         options={({ navigation }) => ({
-          title: "New New",
+          title: 'New New',
           headerRight: () => (
             <Button
-              onPress={() => navigation.navigate("About")}
+              onPress={() => navigation.navigate('About')}
               title="About"
               color="#000"
             />
@@ -43,18 +35,30 @@ function HomePageStack() {
       <Stack.Screen
         name="Details"
         component={DetailsPage}
-        options={{ title: "Details Page", headerBackTitleVisible: false }}
+        options={{ title: 'Details Page', headerBackTitleVisible: false }}
       />
       <Stack.Screen
         name="About"
         component={AboutPage}
-        options={{ title: "New New", headerBackTitleVisible: false }}
+        options={{ title: 'New New', headerBackTitleVisible: false }}
       />
     </Stack.Navigator>
   );
 }
 
 export default function App() {
+  // Load fonts
+  const [loaded] = useFonts({
+    'Poppins': require('./assets/fonts/Poppins-Regular.ttf'),
+    'Poppins-SemiBold': require('./assets/fonts/Poppins-SemiBold.ttf'),
+    'Roboto': require('./assets/fonts/Roboto-Regular.ttf'),
+    'Roboto-Bold': require('./assets/fonts/Roboto-Bold.ttf'),
+  });
+
+  if (!loaded) {
+    return null;
+  }
+
   return (
     <NavigationContainer>
       <Tab.Navigator>
@@ -68,7 +72,7 @@ export default function App() {
         <Tab.Screen
           name="Submission"
           component={SubmissionPage}
-          options={{ title: "New New" }}
+          options={{ title: 'New New' }}
         />
       </Tab.Navigator>
     </NavigationContainer>
