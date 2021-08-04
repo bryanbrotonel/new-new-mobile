@@ -10,7 +10,7 @@ const HeaderText = (props) => {
 const styles = StyleSheet.create({
   bodyFont: {
     fontSize: 32,
-    fontFamily: 'Poppins-SemiBold',
+    fontFamily: 'Poppins-Bold',
   },
 });
 

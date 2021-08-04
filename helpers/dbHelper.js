@@ -72,12 +72,11 @@ export function getArtists(artistsData) {
 }
 
 // Pushes artist submissions to DB
-export function submitArtist(artist, notable, handle) {
+export function submitArtist(artist, handle) {
   const firebaseDB = firebase.database();
 
   var share = {
     artist: artist,
-    notable: notable,
     handle: handle,
   };
 
