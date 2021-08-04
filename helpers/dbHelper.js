@@ -1,12 +1,12 @@
-import firebase from "firebase/app";
-import "firebase/database";
+import firebase from 'firebase/app';
+import 'firebase/database';
 
 function formatDate(date) {
   var day = date.getDate();
   var month = date.getMonth();
   var year = date.getYear().toString().substring(1);
 
-  return day + "/" + ("0" + (month + 1)).slice(-2) + "/" + year;
+  return day + '/' + ('0' + (month + 1)).slice(-2) + '/' + year;
 }
 
 // Get post data for all posts
@@ -15,9 +15,9 @@ export function getPosts() {
     // Firebase post data reference
     firebase
       .database()
-      .ref("artists/posts")
-      .orderByChild("posted")
-      .once("value", function (snapshot) {
+      .ref('posts')
+      .orderByChild('posted')
+      .once('value', function (snapshot) {
         return snapshot ? resolve(snapshot) : reject(snapshot);
       });
   });
@@ -31,8 +31,8 @@ export function getArtists(artistsData) {
     // Firebase artists data reference
     firebase
       .database()
-      .ref("artists/artists_list")
-      .once("value", function (snapshot) {
+      .ref('artists_list')
+      .once('value', function (snapshot) {
         const postData = snapshot.val();
 
         // For each loop iterating each post key
@@ -43,7 +43,7 @@ export function getArtists(artistsData) {
           const timeStamp = formatDate(
             new Date(
               parseInt(
-                artistSnapshot.val()["posted"].toString().substring(1),
+                artistSnapshot.val()['posted'].toString().substring(1),
                 10
               )
             )
@@ -57,7 +57,7 @@ export function getArtists(artistsData) {
             notableLink: artistData.notableLink,
             instagram: artistData.instagram,
             soundcloud: artistData.soundcloud,
-            submitter: artistSnapshot.val()["author"],
+            submitter: artistSnapshot.val()['author'],
             timeStamp: timeStamp.toString(),
           };
 
@@ -82,20 +82,24 @@ export function submitArtist(artist, handle) {
 
   var updates = {};
 
-  updates["shares/" + firebaseDB.ref("submissions").push().key] = share;
+  updates['shares/' + firebaseDB.ref('submissions').push().key] = share;
 
   firebaseDB.ref().update(updates);
 }
-
 var firebaseConfig = {
-  apiKey: "AIzaSyARro3Vj-i8QUJ-9E8UT7yD4ygRmGF-we4",
-  authDomain: "new-new-d75cb.firebaseapp.com",
-  databaseURL: "https://new-new-d75cb.firebaseio.com",
-  projectId: "new-new-d75cb",
-  storageBucket: "new-new-d75cb.appspot.com",
-  messagingSenderId: "254583637908",
-  appId: "1:254583637908:web:53492c04aba4e2e9afb181",
-  measurementId: "G-B4RPKVVN2C",
+  apiKey: 'AIzaSyC5TlvfDFxDz5ng2dWBFZWFO458vHGCVOQ',
+  authDomain: 'new-new-test-dbb62.firebaseapp.com',
+  databaseURL: 'https://new-new-test-dbb62-default-rtdb.firebaseio.com',
+  projectId: 'new-new-test-dbb62',
+  storageBucket: 'new-new-test-dbb62.appspot.com',
+  messagingSenderId: '539866181949',
+  appId: '1:539866181949:web:7c11674c59a488998b5554',
+  measurementId: 'G-Q1TBPMFF0R',
 };
+
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+} else {
+  firebase.app();
+}

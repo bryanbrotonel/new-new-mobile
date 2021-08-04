@@ -26,7 +26,7 @@ function HomePageStack() {
   return (
     <Stack.Navigator initialRouteName="HomePageStack">
       <Stack.Screen
-        name="Home"
+        name="HomeScreen"
         component={HomePage}
         options={({ navigation }) => ({
           title: 'New New',
@@ -44,7 +44,7 @@ function HomePageStack() {
         })}
       />
       <Stack.Screen
-        name="Details"
+        name="DetailsScreen"
         component={DetailsPage}
         options={{
           title: 'New New',

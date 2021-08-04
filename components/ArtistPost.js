@@ -1,43 +1,43 @@
-import React from "react";
-import { Text, Image, View, StyleSheet } from "react-native";
+import React from 'react';
+import { Text, Image, View, StyleSheet } from 'react-native';
+import HeaderText from '../components/HeaderText';
+import BodyText from '../components/BodyText';
 
 const ArtistPost = (props) => {
-    const {
-      name,
-      image,
-      noteableTitle,
-      noteableLink,
-      instagram,
-      soundcloud,
-      submitter,
-      timeStamp,
-    } = props;
-    
-    return (
-      <View>
-        <Image style={styles.tinyLogo} source={{ uri: image }} />
-        <Text>{name}</Text>
-        <Text>{noteableTitle}</Text>
-        <Text>{instagram}</Text>
-        <Text>{soundcloud}</Text>
-        <Text>{submitter}</Text>
-        <Text>{image}</Text>
-      </View>
-    );
-  }
+  const { artist } = props;
+  const { name, image, noteableTitle, instagram, soundcloud, submitter } =
+    artist;
+
+  return (
+    <View style={styles.container}>
+      <Image style={styles.image} source={{ uri: image }} />
+      <HeaderText style={styles.artistText}>{name}</HeaderText>
+      <BodyText style={styles.submitterText}>Submitted by {submitter}</BodyText>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 50,
+    flex: 1,
+    marginHorizontal: 16,
+    marginTop: 16,
+    padding: 12,
+    paddingBottom: 30,
+    borderRadius: 15,
+    backgroundColor: 'white',
   },
-  tinyLogo: {
-    width: 50,
-    height: 50,
+  image: {
+    width: '100%',
+    height: 400,
   },
-  logo: {
-    width: 66,
-    height: 58,
+  artistText: {
+    marginTop: 16,
+  },
+  submitterText: {
+    marginTop: 16,
+    color: 'grey',
   },
 });
 
-export default ArtistPost
+export default ArtistPost;

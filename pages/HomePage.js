@@ -27,37 +27,20 @@ const HomePage = ({ navigation }) => {
   }, []);
 
   artists.forEach((artist) => {
-    const {
-      name,
-      image,
-      notableTitle,
-      notableLink,
-      instagram,
-      soundcloud,
-      submitter,
-      timeStamp,
-    } = artist;
+    const { instagram } = artist;
 
     const item = (
       <View key={instagram}>
-        <ArtistPost
-          name={name}
-          image={image}
-          notableTitle={notableTitle}
-          notableLink={notableLink}
-          instagram={instagram}
-          soundcloud={soundcloud}
-          submitter={submitter}
-          timeStamp={timeStamp}
-        />
-        <Button
-          title="Go to Profile"
+        <TouchableOpacity
           onPress={() =>
-            navigation.navigate('Details', {
+            navigation.navigate('DetailsScreen', {
               artist: artist,
             })
           }
-        />
+          activeOpacity={1}
+        >
+          <ArtistPost artist={artist} />
+        </TouchableOpacity>
       </View>
     );
     items.push(item);
@@ -66,9 +49,4 @@ const HomePage = ({ navigation }) => {
   return <ScrollView>{items}</ScrollView>;
 };
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#fff',
-  },
-});
 export default HomePage;

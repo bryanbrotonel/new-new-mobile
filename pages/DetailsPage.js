@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   Image,
   StatusBar,
+  TouchableOpacity,
   ScrollView,
 } from 'react-native';
 
@@ -40,8 +41,8 @@ const DetailsPage = ({ route }) => {
         <View>
           <Image style={styles.image} source={{ uri: image }} />
           <View style={styles.artistView}>
-            <View style={{ ...styles.textView, flex: 2 }}>
-              <HeaderText>{name}Artists</HeaderText>
+            <View style={{ flex: 2 }}>
+              <HeaderText>{name}</HeaderText>
             </View>
             <View style={styles.socialsView}>
               <FontAwesomeIcon
@@ -74,20 +75,10 @@ const DetailsPage = ({ route }) => {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum
-            dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-            ea commodo consequat. Duis aute irure dolor in reprehenderit in
-            voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-            officia deserunt mollit anim id est laborum.
+            aliquip ex ea commodo consequat.
           </BodyText>
         </View>
-        <View
+        <TouchableOpacity
           style={styles.notableView}
           onPress={() => Linking.openURL(notableLink)}
         >
@@ -99,7 +90,7 @@ const DetailsPage = ({ route }) => {
           <BodyText style={styles.notableText}>
             Listen to {notableTitle}
           </BodyText>
-        </View>
+        </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   );
@@ -107,6 +98,7 @@ const DetailsPage = ({ route }) => {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     paddingTop: StatusBar.currentHeight,
   },
   scrollView: {
@@ -127,7 +119,7 @@ const styles = StyleSheet.create({
   },
   socialLogo: {
     flex: 1,
-    marginHorizontal: 4,
+    marginHorizontal: 6,
   },
   image: {
     resizeMode: 'cover',
