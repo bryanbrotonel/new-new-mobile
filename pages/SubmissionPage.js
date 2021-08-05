@@ -24,8 +24,9 @@ export default function SubmissionPage() {
   const [modalVisible, setModalVisible] = useState(false);
 
   function onSubmitSubmission() {
-    if (subArtist == null) Alert.alert('Enter Artist Name');
-    else if (subHandle == null) Alert.alert('Enter Your Social Media Handle');
+    if (subArtist == null || subArtist == "") Alert.alert('Enter Artist Name');
+    else if (subHandle == null || subHandle == "")
+      Alert.alert('Enter Your Social Media Handle');
     else {
       onChangeSubArtist(null);
       onChangeSubHandle(null);
@@ -47,9 +48,12 @@ export default function SubmissionPage() {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
+            <HeaderText style={{ fontSize: 25, marginBottom: 15 }}>
+              Thank you!
+            </HeaderText>
             <BodyText style={{ ...styles.modalText }}>
-              Thank you for sharing music with the world! Check back to see your
-              artist on your feed.
+              Thank you for sharing music with the world! Your artist has been
+              sent for review. Check back later to see your artist on your feed.
             </BodyText>
             <Pressable
               style={[styles.button, styles.buttonClose]}
@@ -141,7 +145,8 @@ const styles = StyleSheet.create({
   },
   button: {
     borderRadius: 15,
-    padding: 17,
+    padding: 15,
+    paddingHorizontal: 23,
     elevation: 2,
     alignSelf: 'flex-end',
   },
@@ -155,7 +160,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     textAlign: 'center',
-    fontSize: 15,
+    fontSize: 17,
   },
   modalText: {
     fontSize: 20,
